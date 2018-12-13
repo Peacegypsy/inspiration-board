@@ -1,78 +1,44 @@
-# Inspiration Board
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Introduction
+## Available Scripts
 
-In this project you will use a provided API to provide an inspiration board front-end.  You will build an application which displays a set of cards containing inspirational quotes and emoji images, like the board in the Ada common room.  Users should be able to add and remove cards.
+In the project directory, you can run:
 
-![Adas inspiration Board](./images/board.jpg)
+### `npm start`
 
-This is a [Stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md#stage-2) individual project. You will be submitting a PR for this project at the end by **Monday December 17th**.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-## Learning Goals
-This project should enable you to demonstrate learning in:
-- Using an API within a React app
-- Designing a React application with multiple interacting components
-- Creating test files with snapshot tests
+### `npm test`
 
-## Project Baseline
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-The API is hosted at **https://inspiration-board.herokuapp.com/**.  You can find the API documentation and source code hosted [here](https://github.com/AdaGold/inspiration-board-api).
+### `npm run build`
 
-You should spend time exploring the API with Postman to get a feel for how to make requests and how the data is returned.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-One task you should definitely complete: create a board for yourself, with a name that will be unique for you.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-### A Note About Styles
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-We have provided styles for you in `.css` files. Styling is not a major learning goal for this project, so please limit the amount of time you spend on styling.
+### `npm run eject`
 
-To ease the use of our styles, the project conforms to a naming methodology/naming convention standard known as [BEM, or Block Element Modifier](http://getbem.com/). Essentially, you can count on the provided styles to conform to the following naming rules:
-- There aren't any, or rarely any element/tag selectors or ID selectors, and all styles selectors are on classes. That means there are are a lot more classes to set, but it relies less on assuming a specific HTML structure before understanding how to use it
-- Classes are named in [block__element--modifier](http://getbem.com/naming/) format:
-  - The first section, `block`, will describe the semantic block that the style applies to
-  - The second section, `element` (after two underscores), will describe the specific element within that block that the style applies to
-  - The third section `modifier` (after two hyphens), will describe any sort of modifier (ie `enabled`, `success`, `green`) for that block and element that the style applies to
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Here's an example:
-```css
-.new-card-form__header {
-  text-align: center;
-  ...
-}
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-In this case, there is some "block" (section, idea, maybe component) named `new-card-form`, and this style is for the "element" that represents the header by name of `header`. This style makes the header in the new card form `text-align: center;`. Note that this does not dictate what kind of HTML tag this is, or what its parent or children are.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Again, please limit the time you spend on styling, and reach out often and frequently.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Wave 1
+## Learn More
 
-Create `Card` and `Board` components and use the provided hardcoded data to populate the board.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-- Build the Card component to display a single inspirational quote and optional emoji.
-- Build a `Board` component which renders a list of Cards from hardcoded data
-
-Note there is a package installed called [`emoji-dictionary`](https://github.com/IonicaBizau/emoji-dictionary) which you can elect to use to display the emojis listed.
-
-## Wave 2
-
-In wave 2 you will add API functionality.
-- Modify the `Board` component to use `axios` to retrieve card data from the end point, using the board you created in the baseline:
-  - `https://inspiration-board.herokuapp.com/boards/<YOUR-NAME>/cards`
-  - Note that you should put your name in place of `<YOUR-NAME>`
-- Create a shallow snapshot tests for the `Card` and `NewCardForm` components
-
-## Wave 3
-- Add a delete button on each card which will remove a card from the `Board` and delete it from the API.
-- Create a `NewCardForm` component which will add new cards to the board and trigger POST requests to the API to create a card on the API.
-
-## Optionals
-Possible optional enhancements include:
-- Allowing the user to switch between bards with a drop-down list
-- Add user interaction testing
-- Allow the `NewCardForm` to post to different boards on the API.
-- Try to deploy the app on Github pages [(nice tutorial, here!)](https://codeburst.io/deploy-react-to-github-pages-to-create-an-amazing-website-42d8b09cd4d)
-
-## What we're looking for
-You can see what your instructors are looking for [here](./feedback.md)
+To learn React, check out the [React documentation](https://reactjs.org/).
