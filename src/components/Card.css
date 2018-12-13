@@ -33,14 +33,14 @@
 }
 
 .card__content-emoji {
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .card__content-text,
 .card__content-emoji {
   padding: 0;
   margin: 0;
-  font-size: 3em;
+  font-size: 5em;
 }
 
 .card__delete {
