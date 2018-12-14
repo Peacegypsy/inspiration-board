@@ -26,7 +26,7 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   emoji: PropTypes.string,
   id: PropTypes.number.isRequired
 };

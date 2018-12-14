@@ -14,28 +14,56 @@ class Board extends Component {
     super();
 
     this.state = {
-      cardList: []
+      cards: []
     };
   }
+
   // populateCards = () => {
   //   return CARD_DATA["cards"].map(card => {
   //     return <Card id={card.id} text={card.text} emoji={card.emoji} />;
   //   });
   // };
+  //****************
   componentDidMount() {
-    axios.get(URL).then(response => {
-      const cards = response.data.map(card => {
-        return <Card text={card.text} emoji={card.emoji} />;
+    axios
+      .get(URL)
+      .then(response => {
+        const cards = response.data.map(card => {
+          const newCard = {
+            ...card.card
+          };
+          return newCard;
+        });
+        console.log("in cDM part");
+        this.setState({
+          cards: cards
+        });
+      })
+      .catch(error => {
+        console.log(error.message);
+        this.setState({ errorMessage: error.message });
       });
-    });
   }
+  allCards = () => {
+    return this.state.cards.map(card => {
+      return <Card text={card.text} id={card.id} emoji={card.emoji} />;
+    });
+  };
+  // componentDidMount() {
+  //   axios.get(URL).then(response => {
+  //     console.log("inside component", response.data);
+  //     const cardList = response.data.map((card, i) => {
+  //       return <Card text={card.text} emoji={card.emoji} id={i} />;
+  //     });
+  //     // .catch(error => {
+  //     //   console.log("error somewhere");
+  //     //   this.setState({ error: error.message });
+  //     // });
+  //     return cardList;
+  //   });
+
   render() {
-    return (
-      <div>
-        <div>Board</div>
-        <div>{this.cardList}</div>
-      </div>
-    );
+    return <div>{this.allCards()}</div>;
   }
 }
 
