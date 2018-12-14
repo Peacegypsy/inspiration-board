@@ -1,5 +1,5 @@
 .card {
-  background-color: #f4ff81;
+  background-color: #336699;
 
   padding: 1em 0;
   margin: 0.5rem;
@@ -33,14 +33,13 @@
 }
 
 .card__content-emoji {
-  font-size: 5rem;
+  font-size: 3rem;
 }
 
 .card__content-text,
 .card__content-emoji {
   padding: 0;
   margin: 0;
-  font-size: 5em;
 }
 
 .card__delete {

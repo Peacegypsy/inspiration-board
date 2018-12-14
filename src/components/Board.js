@@ -5,13 +5,13 @@ import axios from "axios";
 import "./Board.css";
 import Card from "./Card";
 import NewCardForm from "./NewCardForm";
-import CARD_DATA from "../data/card-data.json";
+// import CARD_DATA from "../data/card-data.json";
 
 const URL = "https://inspiration-board.herokuapp.com/boards/Christina/cards";
 
 class Board extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       cards: []
@@ -32,6 +32,7 @@ class Board extends Component {
           const newCard = {
             ...card.card
           };
+
           return newCard;
         });
         console.log("in cDM part");
@@ -44,9 +45,31 @@ class Board extends Component {
         this.setState({ errorMessage: error.message });
       });
   }
+
   allCards = () => {
-    return this.state.cards.map(card => {
-      return <Card text={card.text} id={card.id} emoji={card.emoji} />;
+    return this.state.cards.map((card, i) => {
+      return (
+        <Card
+          key={i}
+          text={card.text}
+          id={card.id}
+          emoji={card.emoji}
+          removeCardCallback={this.removeCard}
+        />
+      );
+    });
+  };
+  removeCard = cardID => {
+    let deleteIndex = -1;
+    const cards = [...this.state.cardList];
+    cards.forEach((card, index) => {
+      if (cardID === card.id) {
+        deleteIndex = index;
+      }
+    });
+    cards.splice(deleteIndex, 1);
+    this.setState({
+      cardList: cards
     });
   };
   // componentDidMount() {
@@ -63,10 +86,13 @@ class Board extends Component {
   //   });
 
   render() {
-    return <div>{this.allCards()}</div>;
+    return <div className="board">{this.allCards()} </div>;
   }
 }
 
-Board.propTypes = {};
+Board.propTypes = {
+  cardList: PropTypes.array,
+  removeCardCallback: PropTypes.func
+};
 
 export default Board;
