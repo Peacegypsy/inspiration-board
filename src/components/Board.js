@@ -69,8 +69,32 @@ class Board extends Component {
     });
     cards.splice(deleteIndex, 1);
     this.setState({
-      cardList: cards
+      cards: cards
     });
+  };
+
+  addCard = newCard => {
+    const apiPayload = {
+      ...newCard
+    };
+    axios
+      .post(URL, apiPayload)
+      .then(response => {
+        const myNewCard = response.data;
+        newCard.id = myNewCard.id;
+        const { allCards } = this.state;
+
+        allCards.push(newCard);
+        this.setState({
+          allCards,
+          errorMessage: "card added"
+        });
+      })
+      .catch(error => {
+        this.setState({
+          errorMessage: `Failure ${error.message}`
+        });
+      });
   };
   // componentDidMount() {
   //   axios.get(URL).then(response => {
@@ -86,13 +110,24 @@ class Board extends Component {
   //   });
 
   render() {
-    return <div className="board">{this.allCards()} </div>;
+    return (
+      <div className="board">
+        {this.allCards()}
+        <section>
+          <NewCardForm
+            addCardCallback={this.addCard}
+            emoDropbuttonCallback={this.emoDropbutton}
+          />{" "}
+        </section>
+      </div>
+    );
   }
 }
 
 Board.propTypes = {
   cardList: PropTypes.array,
-  removeCardCallback: PropTypes.func
+  removeCardCallback: PropTypes.func,
+  addCardCallback: PropTypes.func
 };
 
 export default Board;
