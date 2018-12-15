@@ -55,6 +55,7 @@ class Board extends Component {
           id={card.id}
           emoji={card.emoji}
           removeCardCallback={this.removeCard}
+          addCardCallback={this.addCard}
         />
       );
     });
@@ -80,18 +81,27 @@ class Board extends Component {
     const apiPayload = {
       ...newCard
     };
+    console.log(newCard, "in add card component 1");
     axios
-      .post(URL, apiPayload)
+      .post(
+        ` https://inspiration-board.herokuapp.com/boards/Christina/cards`,
+        apiPayload
+      )
+
+      // .post(URL, apiPayload)
       .then(response => {
         const myNewCard = response.data;
+        console.log(response.data);
+        console.log("in the addCard component 2");
         newCard.id = myNewCard.id;
         const { allCards } = this.state;
 
-        allCards.push(newCard);
+        allCards.push(myNewCard);
         this.setState({
           allCards,
           errorMessage: "card added"
         });
+        console.log("adding new card");
       })
       .catch(error => {
         this.setState({
