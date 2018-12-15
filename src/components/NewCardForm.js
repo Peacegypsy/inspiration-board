@@ -36,6 +36,7 @@ class NewCardForm extends Component {
     updatedState[field] = value;
     this.setState(updatedState);
   };
+
   emojiDropdownList = () => {
     const emojis = [""].concat(emoji.names);
     return emojis.map((emojiname, i) => {
@@ -129,8 +130,7 @@ class NewCardForm extends Component {
   }
 }
 NewCardForm.propTypes = {
-  addCardCallback: PropTypes.func,
-  emoDropbuttonCallback: PropTypes.func
+  addCardCallback: PropTypes.func
 };
 
 export default NewCardForm;

@@ -60,8 +60,11 @@ class Board extends Component {
     });
   };
   removeCard = cardID => {
+    console.log(cardID);
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`);
+    console.log(`https://inspiration-board.herokuapp.com/cards/${cardID}`);
     let deleteIndex = -1;
-    const cards = [...this.state.cardList];
+    const cards = [...this.state.cards];
     cards.forEach((card, index) => {
       if (cardID === card.id) {
         deleteIndex = index;
@@ -114,10 +117,7 @@ class Board extends Component {
       <div className="board">
         {this.allCards()}
         <section>
-          <NewCardForm
-            addCardCallback={this.addCard}
-            emoDropbuttonCallback={this.emoDropbutton}
-          />{" "}
+          <NewCardForm addCardCallback={this.addCard} />{" "}
         </section>
       </div>
     );

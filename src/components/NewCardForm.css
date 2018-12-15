@@ -47,7 +47,7 @@
   border: none;
   cursor: pointer;
 }
-.dropdown {
+/* .dropdown {
   position: relative;
   display: inline-block;
 }
@@ -67,4 +67,4 @@
 }
 .show {
   display: block;
-}
+} */

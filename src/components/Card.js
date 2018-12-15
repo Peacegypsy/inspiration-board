@@ -47,7 +47,8 @@ Card.propTypes = {
   text: PropTypes.string,
   emoji: PropTypes.string,
   id: PropTypes.number.isRequired,
-  removeCardCallback: PropTypes.func.isRequired
+  removeCardCallback: PropTypes.func.isRequired,
+  addCardCallback: PropTypes.func.isRequired
 };
 
 export default Card;
