@@ -52,11 +52,12 @@ class NewCardForm extends Component {
     event.preventDefault();
     const { text, emoji } = this.state;
     console.log("in on submit area1");
-    if (text === "") {
+    if (text === "" || emoji === "") {
+      console.log("here i am");
       return;
     }
 
-    console.log(event);
+    console.log("here");
     this.props.addCardCallback(this.state);
     this.resetState();
     console.log("in on submit area2");
@@ -130,7 +131,7 @@ class NewCardForm extends Component {
   }
 }
 NewCardForm.propTypes = {
-  addCardCallback: PropTypes.func
+  addCardCallback: PropTypes.func.isRequired
 };
 
 export default NewCardForm;

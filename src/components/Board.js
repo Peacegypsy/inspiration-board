@@ -35,9 +35,10 @@ class Board extends Component {
 
           return newCard;
         });
-        console.log("in cDM part");
+
         this.setState({
-          cards: cards
+          cards: cards,
+          errorMessage: null
         });
       })
       .catch(error => {
@@ -63,7 +64,7 @@ class Board extends Component {
   removeCard = cardID => {
     console.log(cardID);
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`);
-    console.log(`https://inspiration-board.herokuapp.com/cards/${cardID}`);
+
     let deleteIndex = -1;
     const cards = [...this.state.cards];
     cards.forEach((card, index) => {
@@ -81,24 +82,24 @@ class Board extends Component {
     const apiPayload = {
       ...newCard
     };
-    console.log(newCard, "in add card component 1");
+
     axios
       .post(
         ` https://inspiration-board.herokuapp.com/boards/Christina/cards`,
         apiPayload
       )
-
       // .post(URL, apiPayload)
       .then(response => {
-        const myNewCard = response.data;
-        console.log(response.data);
-        console.log("in the addCard component 2");
-        newCard.id = myNewCard.id;
-        const { allCards } = this.state;
+        const { card } = response.data;
 
-        allCards.push(myNewCard);
+        console.log(response.data);
+
+        // newCard.id = myNewCard.id;
+        const { cards } = this.state;
+        console.log("part two");
+        cards.push(card);
         this.setState({
-          allCards,
+          cards,
           errorMessage: "card added"
         });
         console.log("adding new card");
