@@ -20,9 +20,14 @@ class App extends Component {
           const newBoard = {
             ...board.board
           };
-          console.log("step two- map boards");
+          console.log("step two-", newBoard);
           return newBoard;
         });
+
+        // const { board } = this.boards.map((board, i) => {
+        //     return (<Board key={i} name={board.name} id={board.id} />
+        //   )
+        // boards.push(board);
         this.setState({
           boards: boards,
           errorMessage: null
@@ -33,26 +38,37 @@ class App extends Component {
         console.log(error.message);
         this.setState({ errorMessage: error.message });
       });
-  }
-  allBoards = () => {
-    console.log(this.state);
-    return this.state.boards.map((board, i) => {
-      return <Board key={i} name={board.name} id={board.id} />;
-    });
-  };
 
-  boardsDropdownList = () => {
-    console.log(this.allBoards());
-    const boards = [""].concat(this.boards);
-    console.log(this.board);
-    return boards.map((board, i) => {
-      return (
-        <option value={board.name} key={i}>
-          {this.board.board}
-        </option>
-      );
-    });
-  };
+    var select = document.getElementById("chooseNumber");
+    var options = this.state.boards;
+    console.log(this.state.boards);
+    for (var i = 0; i < options.length; i++) {
+      var opt = options[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select.appendChild(el);
+    }
+  }
+
+  // allBoards = () => {
+  //   return this.boards.map((board, i) => {
+  //     return <Board key={i} name={board.name} id={board.id} />;
+  //   });
+  // };
+
+  // boardsDropdownList = () => {
+  //   console.log("made it here");
+  //   const boards = this.state.boards;
+  //   //   console.log(this.board);
+  //   return boards.map((name, i) => {
+  //     return (
+  //       <option value={name} key={i}>
+  //         {this.board.name}
+  //       </option>
+  //     );
+  //   });
+  // };
 
   render() {
     return (
@@ -62,11 +78,10 @@ class App extends Component {
             <span className="header__text">Inspiration Board</span>
           </h1>
         </header>
+
         <div>
-          Choose a Board
-          <label className="new-board-form__label" htmlFor="board" />
-          <select name="board" placeholder="board" value={this.state.board}>
-            {this.boardsDropdownList()}
+          <select id="chooseNumber">
+            <option>Choose a board</option>
           </select>
         </div>
 
