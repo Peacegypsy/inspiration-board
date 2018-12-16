@@ -18,16 +18,19 @@ class NewCardForm extends Component {
     super(props);
     this.state = {
       text: "",
-      emoji: ""
+      emoji: "",
+      board: ""
     };
   }
 
   resetState = () => {
     this.setState({
       text: "",
-      emoji: ""
+      emoji: "",
+      board: ""
     });
   };
+
   onFormChange = event => {
     const field = event.target.name;
     const value = event.target.value;

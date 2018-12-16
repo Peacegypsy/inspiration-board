@@ -14,7 +14,8 @@ class Board extends Component {
     super(props);
 
     this.state = {
-      cards: []
+      cards: [],
+      boards: []
     };
   }
 
@@ -61,6 +62,7 @@ class Board extends Component {
       );
     });
   };
+
   removeCard = cardID => {
     console.log(cardID);
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`);
@@ -81,6 +83,7 @@ class Board extends Component {
   addCard = newCard => {
     const apiPayload = {
       ...newCard
+      // userBoardName: card.userBoardName
     };
 
     axios
@@ -110,6 +113,31 @@ class Board extends Component {
         });
       });
   };
+
+  // getBoardList = () => {
+  // axios
+  //   .get(`https://inspiration-board.herokuapp.com/boards`)
+  //   .then(response => {
+  //     console.log("step one- getting boards");
+  //     const boards = response.data.map(board => {
+  //       const newBoard = {
+  //         ...board.board
+  //       };
+  //       console.log("step two- map boards");
+  //       return newBoard;
+  //     });
+  //     this.setState({
+  //       boards: boards,
+  //       errorMessage: null
+  //     });
+  //   })
+  //   .catch(error => {
+  //     console.log("somewhere is an error");
+  //     console.log(error.message);
+  //     this.setState({ errorMessage: error.message });
+  //   });
+  // };
+
   // componentDidMount() {
   //   axios.get(URL).then(response => {
   //     console.log("inside component", response.data);
@@ -125,12 +153,14 @@ class Board extends Component {
 
   render() {
     return (
-      <div className="board">
-        {this.allCards()}
-        <section>
-          <NewCardForm addCardCallback={this.addCard} />{" "}
-        </section>
-      </div>
+      <section>
+        <div className="board">
+          {this.allCards()}
+          <section>
+            <NewCardForm addCardCallback={this.addCard} />{" "}
+          </section>
+        </div>
+      </section>
     );
   }
 }
